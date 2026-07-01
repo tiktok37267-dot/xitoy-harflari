@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xitoy Tili Harflari va Pinyin</title>
+    <style>
+        /* OQ-QORA ODDIY DIZAYN */
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --border: #e0e0e0;
+            --panel: #f9f9f9;
+            --accent: #333333;
+        }
+        [data-theme="dark"] {
+            --bg: #121212;
+            --text: #ffffff;
+            --border: #292929;
+            --panel: #1e1e1e;
+            --accent: #f5f5f5;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        
+        /* JADVAL VA HARFLAR STILI */
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 15px 0 8px 0;
+            color: gray;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .letter-box {
+            background-color: var(--panel);
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            user-select: all; /* Bosganda matnni oson belgilash uchun */
+        }
+
+        /* FLOATING TOOLBAR (OVOZ CHIQARISH TUGMASI) */
+        .speak-toolbar {
+            position: fixed;
+            display: none;
+            background-color: #333333;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            align-items: center;
+            gap: 6px;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%, -50%);
+        }
+        .speak-toolbar:active {
+            background-color: #555555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h2>Pinyin Harflari</h2>
+            <button class="theme-btn" onclick="toggleTheme()">Mavzu 🌓</button>
+        </div>
+
+        <p style="font-size: 0.9rem; color: gray; margin-bottom: 10px;">
+            Harf yoki bo'g'inni barmog'ingiz bilan bosib belgilang, ovoz berish tugmasi chiqadi.
+        </p>
+
+        <div class="section-title">Asosiy Unlilar (Ohanglar bilan)</div>
+        <div class="grid-container">
+            <div class="letter-box">ā</div><div class="letter-box">á</div><div class="letter-box">ǎ</div><div class="letter-box">à</div>
+            <div class="letter-box">ō</div><div class="letter-box">ó</div><div class="letter-box">ǒ</div><div class="letter-box">ò</div>
+            <div class="letter-box">ē</div><div class="letter-box">é</div><div class="letter-box">ě</div><div class="letter-box">è</div>
+            <div class="letter-box">ī</div><div class="letter-box">í</div><div class="letter-box">ǐ</div><div class="letter-box">ì</div>
+            <div class="letter-box">ū</div><div class="letter-box">ú</div><div class="letter-box">ǔ</div><div class="letter-box">ù</div>
+            <div class="letter-box">ǖ</div><div class="letter-box">ǘ</div><div class="letter-box">ǚ</div><div class="letter-box">ǜ</div>
+        </div>
+
+        <div class="section-title">Undoshlar (Initials)</div>
+        <div class="grid-container">
+            <div class="letter-box">b</div><div class="letter-box">p</div><div class="letter-box">m</div><div class="letter-box">f</div>
+            <div class="letter-box">d</div><div class="letter-box">t</div><div class="letter-box">n</div><div class="letter-box">l</div>
+            <div class="letter-box">g</div><div class="letter-box">k</div><div class="letter-box">h</div><div class="letter-box">j</div>
+            <div class="letter-box">q</div><div class="letter-box">x</div><div class="letter-box">zh</div><div class="letter-box">ch</div>
+            <div class="letter-box">sh</div><div class="letter-box">r</div><div class="letter-box">z</div><div class="letter-box">c</div>
+            <div class="letter-box">s</div><div class="letter-box">y</div><div class="letter-box">w</div><div class="letter-box">ng</div>
+        </div>
+
+        <div class="section-title">Ko'p ishlatiladigan birikmalar</div>
+        <div class="grid-container">
+            <div class="letter-box">ai</div><div class="letter-box">ei</div><div class="letter-box">ui</div><div class="letter-box">ao</div>
+            <div class="letter-box">ou</div><div class="letter-box">iu</div><div class="letter-box">ie</div><div class="letter-box">üe</div>
+            <div class="letter-box">er</div><div class="letter-box">an</div><div class="letter-box">en</div><div class="letter-box">in</div>
+            <div class="letter-box">un</div><div class="letter-box">ūn</div><div class="letter-box">ang</div><div class="letter-box">eng</div>
+            <div class="letter-box">ing</div><div class="letter-box">ong</div><div class="letter-box">ian</div><div class="letter-box">uan</div>
+        </div>
+
+        <div id="speak-menu" class="speak-toolbar" onclick="speakSelectedText()">
+            <span>Ovoz berish</span> 🔊
+        </div>
+    </div>
+
+    <script>
+        let selectedText = "";
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (localStorage.getItem("letters_theme") === "dark") {
+                document.documentElement.setAttribute("data-theme", "dark");
+            }
+
+            // Matn belgilanishini kuzatish
+            document.addEventListener("selectionchange", () => {
+                const selection = window.getSelection();
+                const text = selection.toString().trim();
+                
+                if (text.length > 0) {
+                    selectedText = text;
+                    document.getElementById("speak-menu").style.display = "flex";
+                } else {
+                    document.getElementById("speak-menu").style.display = "none";
+                }
+            });
+        });
+
+        // GOOGLE TTS ORQALI XITOYCHA O'QISH
+        function speakSelectedText() {
+            if (!selectedText) return;
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(selectedText);
+                utterance.lang = 'zh-CN'; // Xitoycha Google talaffuzi
+                utterance.rate = 0.8;    // Toza va aniq eshitilishi uchun sekinroq tezlik
+                
+                window.speechSynthesis.speak(utterance);
+            }
+            
+            // O'qib bo'lingach menyuni berkitish
+            document.getElementById("speak-menu").style.display = "none";
+            window.getSelection().removeAllRanges(); // Belgilashni yechib yuborish
+        }
+
+        // MAVZUNI O'ZGARTIRISH (OQ / QORA)
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            if (currentTheme === "dark") {
+                document.documentElement.removeAttribute("data-theme");
+                localStorage.setItem("letters_theme", "light");
+            } else {
+                document.documentElement.setAttribute("data-theme", "dark");
+                localStorage.setItem("letters_theme", "dark");
+            }
+        }
+    </script>
+</body>
+</html>
