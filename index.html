@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xitoy Tili Katta Harflari va Pinyin</title>
+    <title>Xitoy Tili To'liq Alifbosi</title>
     <style>
-        /* OQ-QORA ODDIY TELEFON DIZAYNI */
         :root {
             --bg: #ffffff;
             --text: #000000;
-            --border: #cbd5e1;
+            --border: #e2e8f0;
             --panel: #f8fafc;
         }
         [data-theme="dark"] {
@@ -35,9 +34,6 @@
         .container {
             width: 100%;
             max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
         }
         .header {
             display: flex;
@@ -56,84 +52,48 @@
             border-radius: 8px;
             font-size: 0.85rem;
         }
-        .info-text {
+        .info {
             font-size: 0.9rem;
             color: gray;
             margin-bottom: 15px;
-            line-height: 1.4;
         }
-        
-        /* IYEROGLIFLAR RO'YXATI STILI */
         .section-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: bold;
             margin: 20px 0 10px 0;
             color: gray;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            border-left: 3px solid var(--text);
-            padding-left: 8px;
         }
-        .grid-container {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-bottom: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
-        
-        /* KATTLASHTIRILGAN XITOYCHA HARF BLOKI */
-        .letter-card {
+        /* HAR BITTASI ALOHIDA TUGMA KABI */
+        .card {
             background-color: var(--panel);
             border: 1px solid var(--border);
-            padding: 15px 10px;
+            padding: 12px 5px;
             text-align: center;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s;
         }
-        
-        /* XITOYCHA HARFNI JUDA KATTA QILISH */
-        .hz-big {
-            font-size: 4.5rem;
+        .card:active {
+            transform: scale(0.95);
+            opacity: 0.8;
+        }
+        .hz {
+            font-size: 3.5rem;
             font-weight: bold;
             line-height: 1.1;
-            margin-bottom: 5px;
-            user-select: all; /* Bosganda oson belgilash uchun */
         }
-        
-        .py-small {
-            font-size: 1.2rem;
+        .py {
+            font-size: 1.1rem;
             font-weight: 600;
             color: gray;
-            user-select: all;
-        }
-
-        /* FLOATING TOOLBAR (OVOZ BERISH TUGMASI) */
-        .speak-toolbar {
-            position: fixed;
-            display: none;
-            background-color: #000000;
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-size: 0.95rem;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-            z-index: 1000;
-            align-items: center;
-            gap: 8px;
-            left: 50%;
-            top: 15%;
-            transform: translate(-50%, -50%);
-            border: 1px solid #ffffff;
-        }
-        [data-theme="dark"] .speak-toolbar {
-            background-color: #ffffff;
-            color: #000000;
-            border: 1px solid #000000;
+            margin-top: 2px;
         }
     </style>
 </head>
@@ -141,99 +101,105 @@
 
     <div class="container">
         <div class="header">
-            <h2>Xitoy Harflari</h2>
+            <h2>Pinyin Alifbosi</h2>
             <button class="theme-btn" onclick="toggleTheme()">Mavzu 🌓</button>
         </div>
 
-        <p class="info-text">
-            Katta xitoycha harfni yoki pinyinini barmoq bilan bosib belgilang, ekran tepasida <b>Ovoz berish 🔊</b> tugmasi chiqadi.
-        </p>
+        <p class="info">Eshitish uchun istalgan harf ustiga <b>bitta bosing</b>.</p>
 
-        <div class="section-title">Asosiy Unlilar (Ohanglar bilan)</div>
-        <div class="grid-container">
-            <div class="letter-card"><div class="hz-big">啊</div><div class="py-small">ā</div></div>
-            <div class="letter-card"><div class="hz-big">阿</div><div class="py-small">á</div></div>
-            <div class="letter-card"><div class="hz-big">吖</div><div class="py-small">ǎ</div></div>
-            <div class="letter-card"><div class="hz-big">啊</div><div class="py-small">à</div></div>
+        <div class="section-title">Asosiy Unlilar (Ohanglar)</div>
+        <div class="grid">
+            <div class="card" onclick="speak('ā')"><div class="hz">啊</div><div class="py">ā</div></div>
+            <div class="card" onclick="speak('á')"><div class="hz">阿</div><div class="py">á</div></div>
+            <div class="card" onclick="speak('ǎ')"><div class="hz">吖</div><div class="py">ǎ</div></div>
+            <div class="card" onclick="speak('à')"><div class="hz">啊</div><div class="py">à</div></div>
             
-            <div class="letter-card"><div class="hz-big">喔</div><div class="py-small">ō</div></div>
-            <div class="letter-card"><div class="hz-big">哦</div><div class="py-small">ó</div></div>
-            <div class="letter-card"><div class="hz-big">噢</div><div class="py-small">ǒ</div></div>
-            <div class="letter-card"><div class="hz-big">哦</div><div class="py-small">ò</div></div>
+            <div class="card" onclick="speak('ō')"><div class="hz">喔</div><div class="py">ō</div></div>
+            <div class="card" onclick="speak('ó')"><div class="hz">哦</div><div class="py">ó</div></div>
+            <div class="card" onclick="speak('ǒ')"><div class="hz">噢</div><div class="py">ǒ</div></div>
+            <div class="card" onclick="speak('ò')"><div class="hz">哦</div><div class="py">ò</div></div>
 
-            <div class="letter-card"><div class="hz-big">额</div><div class="py-small">ē</div></div>
-            <div class="letter-card"><div class="hz-big">鹅</div><div class="py-small">é</div></div>
-            <div class="letter-card"><div class="hz-big">恶</div><div class="py-small">ě</div></div>
-            <div class="letter-card"><div class="hz-big">饿</div><div class="py-small">è</div></div>
+            <div class="card" onclick="speak('ē')"><div class="hz">额</div><div class="py">ē</div></div>
+            <div class="card" onclick="speak('é')"><div class="hz">鹅</div><div class="py">é</div></div>
+            <div class="card" onclick="speak('ě')"><div class="hz">恶</div><div class="py">ě</div></div>
+            <div class="card" onclick="speak('è')"><div class="hz">饿</div><div class="py">è</div></div>
 
-            <div class="letter-card"><div class="hz-big">衣</div><div class="py-small">ī</div></div>
-            <div class="letter-card"><div class="hz-big">姨</div><div class="py-small">í</div></div>
-            <div class="letter-card"><div class="hz-big">椅</div><div class="py-small">ǐ</div></div>
-            <div class="letter-card"><div class="hz-big">意</div><div class="py-small">ì</div></div>
+            <div class="card" onclick="speak('ī')"><div class="hz">衣</div><div class="py">ī</div></div>
+            <div class="card" onclick="speak('í')"><div class="hz">姨</div><div class="py">í</div></div>
+            <div class="card" onclick="speak('ǐ')"><div class="hz">椅</div><div class="py">ǐ</div></div>
+            <div class="card" onclick="speak('ì')"><div class="hz">意</div><div class="py">ì</div></div>
 
-            <div class="letter-card"><div class="hz-big">屋</div><div class="py-small">ū</div></div>
-            <div class="letter-card"><div class="hz-big">无</div><div class="py-small">ú</div></div>
-            <div class="letter-card"><div class="hz-big">五</div><div class="py-small">ǔ</div></div>
-            <div class="letter-card"><div class="hz-big">务</div><div class="py-small">ù</div></div>
+            <div class="card" onclick="speak('ū')"><div class="hz">屋</div><div class="py">ū</div></div>
+            <div class="card" onclick="speak('ú')"><div class="hz">无</div><div class="py">ú</div></div>
+            <div class="card" onclick="speak('ǔ')"><div class="hz">五</div><div class="py">ǔ</div></div>
+            <div class="card" onclick="speak('ù')"><div class="hz">务</div><div class="py">ù</div></div>
+
+            <div class="card" onclick="speak('ǖ')"><div class="hz">淤</div><div class="py">ǖ</div></div>
+            <div class="card" onclick="speak('ǘ')"><div class="hz">鱼</div><div class="py">ǘ</div></div>
+            <div class="card" onclick="speak('ǚ')"><div class="hz">雨</div><div class="py">ǚ</div></div>
+            <div class="card" onclick="speak('ǜ')"><div class="hz">玉</div><div class="py">ǜ</div></div>
         </div>
 
-        <div class="section-title">Kundalik Muhim Harflar</div>
-        <div class="grid-container">
-            <div class="letter-card"><div class="hz-big">我</div><div class="py-small">wǒ (Men)</div></div>
-            <div class="letter-card"><div class="hz-big">你</div><div class="py-small">nǐ (Sen)</div></div>
-            <div class="letter-card"><div class="hz-big">他</div><div class="py-small">tā (U)</div></div>
-            <div class="letter-card"><div class="hz-big">好</div><div class="py-small">hǎo (Yaxshi)</div></div>
-            <div class="letter-card"><div class="hz-big">是</div><div class="py-small">shì (Ha / Shunday)</div></div>
-            <div class="letter-card"><div class="hz-big">不</div><div class="py-small">bù (Yo'q / Emas)</div></div>
-            <div class="letter-card"><div class="hz-big">中</div><div class="py-small">zhōng (Markaz)</div></div>
-            <div class="letter-card"><div class="hz-big">国</div><div class="py-small">guó (Davlat)</div></div>
-            <div class="letter-card"><div class="hz-big">的</div><div class="py-small">de (Ning)</div></div>
-            <div class="letter-card"><div class="hz-big">一</div><div class="py-small">yī (Bir)</div></div>
+        <div class="section-title">Undoshlar (Initials)</div>
+        <div class="grid">
+            <div class="card" onclick="speak('bo')"><div class="hz">玻</div><div class="py">b</div></div>
+            <div class="card" onclick="speak('po')"><div class="hz">坡</div><div class="py">p</div></div>
+            <div class="card" onclick="speak('mo')"><div class="hz">摸</div><div class="py">m</div></div>
+            <div class="card" onclick="speak('fo')"><div class="hz">佛</div><div class="py">f</div></div>
+            <div class="card" onclick="speak('de')"><div class="hz">得</div><div class="py">d</div></div>
+            <div class="card" onclick="speak('te')"><div class="hz">特</div><div class="py">t</div></div>
+            <div class="card" onclick="speak('ne')"><div class="hz">讷</div><div class="py">n</div></div>
+            <div class="card" onclick="speak('le')"><div class="hz">勒</div><div class="py">l</div></div>
+            <div class="card" onclick="speak('ge')"><div class="hz">哥</div><div class="py">g</div></div>
+            <div class="card" onclick="speak('ke')"><div class="hz">科</div><div class="py">k</div></div>
+            <div class="card" onclick="speak('he')"><div class="hz">喝</div><div class="py">h</div></div>
+            <div class="card" onclick="speak('ji')"><div class="hz">鸡</div><div class="py">j</div></div>
+            <div class="card" onclick="speak('qi')"><div class="hz">七</div><div class="py">q</div></div>
+            <div class="card" onclick="speak('xi')"><div class="hz">西</div><div class="py">x</div></div>
+            <div class="card" onclick="speak('zhi')"><div class="hz">知</div><div class="py">zh</div></div>
+            <div class="card" onclick="speak('chi')"><div class="hz">吃</div><div class="py">ch</div></div>
+            <div class="card" onclick="speak('shi')"><div class="hz">狮</div><div class="py">sh</div></div>
+            <div class="card" onclick="speak('ri')"><div class="hz">日</div><div class="py">r</div></div>
+            <div class="card" onclick="speak('zi')"><div class="hz">资</div><div class="py">z</div></div>
+            <div class="card" onclick="speak('ci')"><div class="hz">雌</div><div class="py">c</div></div>
+            <div class="card" onclick="speak('si')"><div class="hz">思</div><div class="py">s</div></div>
+            <div class="card" onclick="speak('yi')"><div class="hz">衣</div><div class="py">y</div></div>
+            <div class="card" onclick="speak('wu')"><div class="hz">乌</div><div class="py">w</div></div>
         </div>
 
-        <div id="speak-menu" class="speak-toolbar" onclick="speakSelectedText()">
-            <span>Ovoz berish</span> 🔊
+        <div class="section-title">Murakkab Unlilar (Finals)</div>
+        <div class="grid">
+            <div class="card" onclick="speak('ai')"><div class="hz">哀</div><div class="py">ai</div></div>
+            <div class="card" onclick="speak('ei')"><div class="hz">诶</div><div class="py">ei</div></div>
+            <div class="card" onclick="speak('ui')"><div class="hz">威</div><div class="py">ui</div></div>
+            <div class="card" onclick="speak('ao')"><div class="hz">熬</div><div class="py">ao</div></div>
+            <div class="card" onclick="speak('ou')"><div class="hz">欧</div><div class="py">ou</div></div>
+            <div class="card" onclick="speak('iu')"><div class="hz">优</div><div class="py">iu</div></div>
+            <div class="card" onclick="speak('ie')"><div class="hz">耶</div><div class="py">ie</div></div>
+            <div class="card" onclick="speak('yue')"><div class="hz">约</div><div class="py">üe</div></div>
+            <div class="card" onclick="speak('er')"><div class="hz">儿</div><div class="py">er</div></div>
+            <div class="card" onclick="speak('an')"><div class="hz">安</div><div class="py">an</div></div>
+            <div class="card" onclick="speak('en')"><div class="hz">恩</div><div class="py">en</div></div>
+            <div class="card" onclick="speak('yin')"><div class="hz">因</div><div class="py">in</div></div>
+            <div class="card" onclick="speak('wen')"><div class="hz">温</div><div class="py">un</div></div>
+            <div class="card" onclick="speak('yun')"><div class="hz">云</div><div class="py">ūn</div></div>
+            <div class="card" onclick="speak('ang')"><div class="hz">昂</div><div class="py">ang</div></div>
+            <div class="card" onclick="speak('eng')"><div class="hz">亨</div><div class="py">eng</div></div>
+            <div class="card" onclick="speak('ying')"><div class="hz">英</div><div class="py">ing</div></div>
+            <div class="card" onclick="speak('weng')"><div class="hz">翁</div><div class="py">ong</div></div>
         </div>
     </div>
 
     <script>
-        let selectedText = "";
-
-        document.addEventListener("DOMContentLoaded", () => {
-            if (localStorage.getItem("big_letters_theme") === "dark") {
-                document.documentElement.setAttribute("data-theme", "dark");
-            }
-
-            // Belgilashni kuzatib borish
-            document.addEventListener("selectionchange", () => {
-                const selection = window.getSelection();
-                const text = selection.toString().trim();
-                
-                if (text.length > 0) {
-                    // Agar qavs ichidagi o'zbekcha tarjima ham belgilangan bo'lsa, faqat pinyin yoki harfni ajratib olish
-                    selectedText = text.split("(")[0].trim();
-                    document.getElementById("speak-menu").style.display = "flex";
-                } else {
-                    document.getElementById("speak-menu").style.display = "none";
-                }
-            });
-        });
-
-        // GOOGLE SPEECH ORQALI O'QISH
-        function speakSelectedText() {
-            if (!selectedText) return;
-
+        // GOOGLE TTS ORQALI BITTA BOSGANDA OVOZ CHIQARISH
+        function speak(text) {
             if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(selectedText);
-                utterance.lang = 'zh-CN'; // Google Xitoycha talaffuz
-                utterance.rate = 0.75;   // Aniqroq eshitilishi uchun biroz sekinroq
-                
+                window.speechSynthesis.cancel(); // Avvalgi ovoz ijrosini to'xtatish
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'zh-CN'; // Xitoycha Google talaffuzi
+                utterance.rate = 0.8;    // O'rganish uchun qulay sekinlik
                 window.speechSynthesis.speak(utterance);
             }
-            
-            document.getElementById("speak-menu").style.display = "none";
-            window.getSelection().removeAllRanges(); // Tanlanganlikni olib tashlash
         }
 
         // MAVZUNI O'ZGARTIRISH (OQ / QORA)
@@ -241,11 +207,16 @@
             const currentTheme = document.documentElement.getAttribute("data-theme");
             if (currentTheme === "dark") {
                 document.documentElement.removeAttribute("data-theme");
-                localStorage.setItem("big_letters_theme", "light");
+                localStorage.setItem("pinyin_theme", "light");
             } else {
                 document.documentElement.setAttribute("data-theme", "dark");
-                localStorage.setItem("big_letters_theme", "dark");
+                localStorage.setItem("pinyin_theme", "dark");
             }
+        }
+
+        // Sahifa yuklanganda mavzuni tekshirish
+        if (localStorage.getItem("pinyin_theme") === "dark") {
+            document.documentElement.setAttribute("data-theme", "dark");
         }
     </script>
 </body>
