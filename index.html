@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xitoy Tili Harflari va Pinyin</title>
+    <title>Xitoy Tili Katta Harflari va Pinyin</title>
     <style>
-        /* OQ-QORA ODDIY DIZAYN */
+        /* OQ-QORA ODDIY TELEFON DIZAYNI */
         :root {
             --bg: #ffffff;
             --text: #000000;
-            --border: #e0e0e0;
-            --panel: #f9f9f9;
-            --accent: #333333;
+            --border: #cbd5e1;
+            --panel: #f8fafc;
         }
         [data-theme="dark"] {
             --bg: #121212;
             --text: #ffffff;
-            --border: #292929;
-            --panel: #1e1e1e;
-            --accent: #f5f5f5;
+            --border: #334155;
+            --panel: #1e293b;
         }
         * {
             box-sizing: border-box;
@@ -45,9 +43,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 15px;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            margin-bottom: 15px;
         }
         .theme-btn {
             background: none;
@@ -58,54 +56,84 @@
             border-radius: 8px;
             font-size: 0.85rem;
         }
+        .info-text {
+            font-size: 0.9rem;
+            color: gray;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
         
-        /* JADVAL VA HARFLAR STILI */
+        /* IYEROGLIFLAR RO'YXATI STILI */
         .section-title {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: bold;
-            margin: 15px 0 8px 0;
+            margin: 20px 0 10px 0;
             color: gray;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            border-left: 3px solid var(--text);
+            padding-left: 8px;
         }
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            margin-bottom: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
         }
-        .letter-box {
+        
+        /* KATTLASHTIRILGAN XITOYCHA HARF BLOKI */
+        .letter-card {
             background-color: var(--panel);
             border: 1px solid var(--border);
-            padding: 12px;
+            padding: 15px 10px;
             text-align: center;
-            border-radius: 8px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* XITOYCHA HARFNI JUDA KATTA QILISH */
+        .hz-big {
+            font-size: 4.5rem;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            user-select: all; /* Bosganda oson belgilash uchun */
+        }
+        
+        .py-small {
             font-size: 1.2rem;
-            font-weight: 500;
-            user-select: all; /* Bosganda matnni oson belgilash uchun */
+            font-weight: 600;
+            color: gray;
+            user-select: all;
         }
 
-        /* FLOATING TOOLBAR (OVOZ CHIQARISH TUGMASI) */
+        /* FLOATING TOOLBAR (OVOZ BERISH TUGMASI) */
         .speak-toolbar {
             position: fixed;
             display: none;
-            background-color: #333333;
+            background-color: #000000;
             color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
             z-index: 1000;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             left: 50%;
-            top: 20%;
+            top: 15%;
             transform: translate(-50%, -50%);
+            border: 1px solid #ffffff;
         }
-        .speak-toolbar:active {
-            background-color: #555555;
+        [data-theme="dark"] .speak-toolbar {
+            background-color: #ffffff;
+            color: #000000;
+            border: 1px solid #000000;
         }
     </style>
 </head>
@@ -113,41 +141,54 @@
 
     <div class="container">
         <div class="header">
-            <h2>Pinyin Harflari</h2>
+            <h2>Xitoy Harflari</h2>
             <button class="theme-btn" onclick="toggleTheme()">Mavzu 🌓</button>
         </div>
 
-        <p style="font-size: 0.9rem; color: gray; margin-bottom: 10px;">
-            Harf yoki bo'g'inni barmog'ingiz bilan bosib belgilang, ovoz berish tugmasi chiqadi.
+        <p class="info-text">
+            Katta xitoycha harfni yoki pinyinini barmoq bilan bosib belgilang, ekran tepasida <b>Ovoz berish 🔊</b> tugmasi chiqadi.
         </p>
 
         <div class="section-title">Asosiy Unlilar (Ohanglar bilan)</div>
         <div class="grid-container">
-            <div class="letter-box">ā</div><div class="letter-box">á</div><div class="letter-box">ǎ</div><div class="letter-box">à</div>
-            <div class="letter-box">ō</div><div class="letter-box">ó</div><div class="letter-box">ǒ</div><div class="letter-box">ò</div>
-            <div class="letter-box">ē</div><div class="letter-box">é</div><div class="letter-box">ě</div><div class="letter-box">è</div>
-            <div class="letter-box">ī</div><div class="letter-box">í</div><div class="letter-box">ǐ</div><div class="letter-box">ì</div>
-            <div class="letter-box">ū</div><div class="letter-box">ú</div><div class="letter-box">ǔ</div><div class="letter-box">ù</div>
-            <div class="letter-box">ǖ</div><div class="letter-box">ǘ</div><div class="letter-box">ǚ</div><div class="letter-box">ǜ</div>
+            <div class="letter-card"><div class="hz-big">啊</div><div class="py-small">ā</div></div>
+            <div class="letter-card"><div class="hz-big">阿</div><div class="py-small">á</div></div>
+            <div class="letter-card"><div class="hz-big">吖</div><div class="py-small">ǎ</div></div>
+            <div class="letter-card"><div class="hz-big">啊</div><div class="py-small">à</div></div>
+            
+            <div class="letter-card"><div class="hz-big">喔</div><div class="py-small">ō</div></div>
+            <div class="letter-card"><div class="hz-big">哦</div><div class="py-small">ó</div></div>
+            <div class="letter-card"><div class="hz-big">噢</div><div class="py-small">ǒ</div></div>
+            <div class="letter-card"><div class="hz-big">哦</div><div class="py-small">ò</div></div>
+
+            <div class="letter-card"><div class="hz-big">额</div><div class="py-small">ē</div></div>
+            <div class="letter-card"><div class="hz-big">鹅</div><div class="py-small">é</div></div>
+            <div class="letter-card"><div class="hz-big">恶</div><div class="py-small">ě</div></div>
+            <div class="letter-card"><div class="hz-big">饿</div><div class="py-small">è</div></div>
+
+            <div class="letter-card"><div class="hz-big">衣</div><div class="py-small">ī</div></div>
+            <div class="letter-card"><div class="hz-big">姨</div><div class="py-small">í</div></div>
+            <div class="letter-card"><div class="hz-big">椅</div><div class="py-small">ǐ</div></div>
+            <div class="letter-card"><div class="hz-big">意</div><div class="py-small">ì</div></div>
+
+            <div class="letter-card"><div class="hz-big">屋</div><div class="py-small">ū</div></div>
+            <div class="letter-card"><div class="hz-big">无</div><div class="py-small">ú</div></div>
+            <div class="letter-card"><div class="hz-big">五</div><div class="py-small">ǔ</div></div>
+            <div class="letter-card"><div class="hz-big">务</div><div class="py-small">ù</div></div>
         </div>
 
-        <div class="section-title">Undoshlar (Initials)</div>
+        <div class="section-title">Kundalik Muhim Harflar</div>
         <div class="grid-container">
-            <div class="letter-box">b</div><div class="letter-box">p</div><div class="letter-box">m</div><div class="letter-box">f</div>
-            <div class="letter-box">d</div><div class="letter-box">t</div><div class="letter-box">n</div><div class="letter-box">l</div>
-            <div class="letter-box">g</div><div class="letter-box">k</div><div class="letter-box">h</div><div class="letter-box">j</div>
-            <div class="letter-box">q</div><div class="letter-box">x</div><div class="letter-box">zh</div><div class="letter-box">ch</div>
-            <div class="letter-box">sh</div><div class="letter-box">r</div><div class="letter-box">z</div><div class="letter-box">c</div>
-            <div class="letter-box">s</div><div class="letter-box">y</div><div class="letter-box">w</div><div class="letter-box">ng</div>
-        </div>
-
-        <div class="section-title">Ko'p ishlatiladigan birikmalar</div>
-        <div class="grid-container">
-            <div class="letter-box">ai</div><div class="letter-box">ei</div><div class="letter-box">ui</div><div class="letter-box">ao</div>
-            <div class="letter-box">ou</div><div class="letter-box">iu</div><div class="letter-box">ie</div><div class="letter-box">üe</div>
-            <div class="letter-box">er</div><div class="letter-box">an</div><div class="letter-box">en</div><div class="letter-box">in</div>
-            <div class="letter-box">un</div><div class="letter-box">ūn</div><div class="letter-box">ang</div><div class="letter-box">eng</div>
-            <div class="letter-box">ing</div><div class="letter-box">ong</div><div class="letter-box">ian</div><div class="letter-box">uan</div>
+            <div class="letter-card"><div class="hz-big">我</div><div class="py-small">wǒ (Men)</div></div>
+            <div class="letter-card"><div class="hz-big">你</div><div class="py-small">nǐ (Sen)</div></div>
+            <div class="letter-card"><div class="hz-big">他</div><div class="py-small">tā (U)</div></div>
+            <div class="letter-card"><div class="hz-big">好</div><div class="py-small">hǎo (Yaxshi)</div></div>
+            <div class="letter-card"><div class="hz-big">是</div><div class="py-small">shì (Ha / Shunday)</div></div>
+            <div class="letter-card"><div class="hz-big">不</div><div class="py-small">bù (Yo'q / Emas)</div></div>
+            <div class="letter-card"><div class="hz-big">中</div><div class="py-small">zhōng (Markaz)</div></div>
+            <div class="letter-card"><div class="hz-big">国</div><div class="py-small">guó (Davlat)</div></div>
+            <div class="letter-card"><div class="hz-big">的</div><div class="py-small">de (Ning)</div></div>
+            <div class="letter-card"><div class="hz-big">一</div><div class="py-small">yī (Bir)</div></div>
         </div>
 
         <div id="speak-menu" class="speak-toolbar" onclick="speakSelectedText()">
@@ -159,17 +200,18 @@
         let selectedText = "";
 
         document.addEventListener("DOMContentLoaded", () => {
-            if (localStorage.getItem("letters_theme") === "dark") {
+            if (localStorage.getItem("big_letters_theme") === "dark") {
                 document.documentElement.setAttribute("data-theme", "dark");
             }
 
-            // Matn belgilanishini kuzatish
+            // Belgilashni kuzatib borish
             document.addEventListener("selectionchange", () => {
                 const selection = window.getSelection();
                 const text = selection.toString().trim();
                 
                 if (text.length > 0) {
-                    selectedText = text;
+                    // Agar qavs ichidagi o'zbekcha tarjima ham belgilangan bo'lsa, faqat pinyin yoki harfni ajratib olish
+                    selectedText = text.split("(")[0].trim();
                     document.getElementById("speak-menu").style.display = "flex";
                 } else {
                     document.getElementById("speak-menu").style.display = "none";
@@ -177,22 +219,21 @@
             });
         });
 
-        // GOOGLE TTS ORQALI XITOYCHA O'QISH
+        // GOOGLE SPEECH ORQALI O'QISH
         function speakSelectedText() {
             if (!selectedText) return;
 
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
                 const utterance = new SpeechSynthesisUtterance(selectedText);
-                utterance.lang = 'zh-CN'; // Xitoycha Google talaffuzi
-                utterance.rate = 0.8;    // Toza va aniq eshitilishi uchun sekinroq tezlik
+                utterance.lang = 'zh-CN'; // Google Xitoycha talaffuz
+                utterance.rate = 0.75;   // Aniqroq eshitilishi uchun biroz sekinroq
                 
                 window.speechSynthesis.speak(utterance);
             }
             
-            // O'qib bo'lingach menyuni berkitish
             document.getElementById("speak-menu").style.display = "none";
-            window.getSelection().removeAllRanges(); // Belgilashni yechib yuborish
+            window.getSelection().removeAllRanges(); // Tanlanganlikni olib tashlash
         }
 
         // MAVZUNI O'ZGARTIRISH (OQ / QORA)
@@ -200,10 +241,10 @@
             const currentTheme = document.documentElement.getAttribute("data-theme");
             if (currentTheme === "dark") {
                 document.documentElement.removeAttribute("data-theme");
-                localStorage.setItem("letters_theme", "light");
+                localStorage.setItem("big_letters_theme", "light");
             } else {
                 document.documentElement.setAttribute("data-theme", "dark");
-                localStorage.setItem("letters_theme", "dark");
+                localStorage.setItem("big_letters_theme", "dark");
             }
         }
     </script>
